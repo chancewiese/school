@@ -3,11 +3,14 @@ import { Typography, Box, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 
-const HomeLogoComponent = () => {
+const HomeLogoComponent = ({ groupCount, itemCount }) => {
   const theme = useTheme();
 
   return (
-    <Box className="flex flex-col items-center justify-center">
+    <Box
+      className="flex flex-col items-center"
+      sx={{ height: "100vh", maxWidth: "400px", margin: "80px", padding: 2 }}
+    >
       <Box
         className="fire"
         sx={{
@@ -45,14 +48,21 @@ const HomeLogoComponent = () => {
           <Box className="main-fire"></Box>
         </Box>
       </Box>
+
       <Typography
         variant="h4"
         component="h1"
-        sx={{ color: theme.palette.primary.main, fontWeight: "bold", mb: 2 }}
+        sx={{
+          color: theme.palette.primary.main,
+          fontWeight: "bold",
+          mb: 2,
+          textAlign: "center",
+        }}
       >
         Streak Tracker
       </Typography>
-      <Box sx={{ display: "flex", gap: 2 }}>
+
+      <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
         <Button
           component={Link}
           to="/streak-groups"
@@ -69,6 +79,15 @@ const HomeLogoComponent = () => {
         >
           Streak Items
         </Button>
+      </Box>
+
+      <Box sx={{ textAlign: "center", mt: 2 }}>
+        <Typography variant="body1" gutterBottom>
+          Welcome to Streak Tracker
+        </Typography>
+        <Typography variant="body2">
+          You have {groupCount} streak groups and {itemCount} streak items.
+        </Typography>
       </Box>
     </Box>
   );

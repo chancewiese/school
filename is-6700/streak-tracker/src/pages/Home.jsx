@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Typography, Box } from "@mui/material";
+import { Box } from "@mui/material";
 import { api } from "../utils/api";
 import HomeLogoComponent from "../components/HomeLogoComponent";
 
@@ -25,19 +25,11 @@ const Home = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        mt: 4,
+        justifyContent: "center",
+        height: "100vh",
       }}
     >
-      <HomeLogoComponent />
-      <Box sx={{ mt: 4, textAlign: "center" }}>
-        <Typography variant="body1" gutterBottom>
-          Welcome to Streak Tracker
-        </Typography>
-        <Typography variant="body2">
-          You have {groups.length} streak groups and {items.length} streak
-          items.
-        </Typography>
-      </Box>
+      <HomeLogoComponent groupCount={groups.length} itemCount={items.length} />
     </Box>
   );
 };

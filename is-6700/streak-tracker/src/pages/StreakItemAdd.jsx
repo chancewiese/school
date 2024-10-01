@@ -15,7 +15,6 @@ import { useTheme } from "@mui/material/styles";
 
 const StreakItemAdd = () => {
   const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
   const [groupId, setGroupId] = useState("");
   const [groups, setGroups] = useState([]);
   const navigate = useNavigate();
@@ -27,7 +26,11 @@ const StreakItemAdd = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await api.addStreakItem({ name, description, groupId });
+    await api.addStreakItem({ name, groupId });
+    navigate("/streak-items");
+  };
+
+  const handleCancel = () => {
     navigate("/streak-items");
   };
 
@@ -48,15 +51,6 @@ const StreakItemAdd = () => {
           onChange={(e) => setName(e.target.value)}
           fullWidth
           required
-          margin="normal"
-        />
-        <TextField
-          label="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          fullWidth
-          multiline
-          rows={4}
           margin="normal"
         />
         <FormControl fullWidth margin="normal">
@@ -81,6 +75,14 @@ const StreakItemAdd = () => {
           sx={{ mt: 2 }}
         >
           Add Item
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          sx={{ mt: 2, ml: 2 }}
+          onClick={handleCancel}
+        >
+          Cancel
         </Button>
       </form>
     </Box>

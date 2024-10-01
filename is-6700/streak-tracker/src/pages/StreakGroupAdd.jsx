@@ -6,13 +6,16 @@ import { useTheme } from "@mui/material/styles";
 
 const StreakGroupAdd = () => {
   const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
   const navigate = useNavigate();
   const theme = useTheme();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await api.addStreakGroup({ name, description });
+    await api.addStreakGroup({ name });
+    navigate("/streak-groups");
+  };
+
+  const handleCancel = () => {
     navigate("/streak-groups");
   };
 
@@ -35,15 +38,6 @@ const StreakGroupAdd = () => {
           required
           margin="normal"
         />
-        <TextField
-          label="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          fullWidth
-          multiline
-          rows={4}
-          margin="normal"
-        />
         <Button
           type="submit"
           variant="contained"
@@ -51,6 +45,14 @@ const StreakGroupAdd = () => {
           sx={{ mt: 2 }}
         >
           Add Group
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          sx={{ mt: 2, ml: 2 }}
+          onClick={handleCancel}
+        >
+          Cancel
         </Button>
       </form>
     </Box>
