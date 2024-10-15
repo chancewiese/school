@@ -1,33 +1,22 @@
 import React, { createContext, useContext, useState } from "react";
-import {
-   ThemeProvider as MuiThemeProvider,
-   createTheme,
-} from "@mui/material/styles";
 
 const ThemeContext = createContext();
 
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
-   const [mode, setMode] = useState("light");
+   const [isDarkMode, setIsDarkMode] = useState(false);
 
    const toggleTheme = () => {
-      setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+      setIsDarkMode((prev) => !prev);
    };
 
-   const theme = React.useMemo(
-      () =>
-         createTheme({
-            palette: {
-               mode,
-            },
-         }),
-      [mode]
-   );
+   const value = {
+      isDarkMode,
+      toggleTheme,
+   };
 
    return (
-      <ThemeContext.Provider value={{ mode, toggleTheme }}>
-         <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
-      </ThemeContext.Provider>
+      <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
    );
 };

@@ -1,26 +1,62 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { TextField, Button, Box, Typography } from "@mui/material";
+import {
+   TextField,
+   Button,
+   Box,
+   Typography,
+   CircularProgress,
+} from "@mui/material";
 import { api } from "../utils/api";
 import { useTheme } from "@mui/material/styles";
 
 const StreakGroupEdit = () => {
-   const [name, setName] = useState("");
    const { id } = useParams();
    const navigate = useNavigate();
    const theme = useTheme();
+   const [name, setName] = useState("");
+   const [isLoading, setIsLoading] = useState(true);
+   const [error, setError] = useState(null);
 
    useEffect(() => {
-      api.getStreakGroup(id).then((group) => {
-         setName(group.name);
-      });
+      const fetchGroup = async () => {
+         try {
+            setIsLoading(true);
+            const group = await api.getStreakGroup(id);
+            setName(group.name);
+         } catch (error) {
+            console.error("Error fetching group:", error);
+            setError("Failed to load group data. Please try again.");
+         } finally {
+            setIsLoading(false);
+         }
+      };
+
+      fetchGroup();
    }, [id]);
 
-   const handleSubmit = async (event) => {
-      event.preventDefault();
-      await api.updateStreakGroup(id, { name });
+   const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+         await api.updateStreakGroup(id, { name });
+         navigate("/streak-groups");
+      } catch (error) {
+         console.error("Error updating group:", error);
+         setError("Failed to update group. Please try again.");
+      }
+   };
+
+   const handleCancel = () => {
       navigate("/streak-groups");
    };
+
+   if (isLoading) {
+      return <CircularProgress />;
+   }
+
+   if (error) {
+      return <Typography color="error">{error}</Typography>;
+   }
 
    return (
       <Box sx={{ p: 3, backgroundColor: theme.palette.background.default }}>
@@ -41,14 +77,20 @@ const StreakGroupEdit = () => {
                required
                margin="normal"
             />
-            <Button
-               type="submit"
-               variant="contained"
-               color="primary"
-               sx={{ mt: 2 }}
+            <Box
+               sx={{ mt: 2, display: "flex", justifyContent: "space-between" }}
             >
-               Update Group
-            </Button>
+               <Button type="submit" variant="contained" color="primary">
+                  Update Group
+               </Button>
+               <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={handleCancel}
+               >
+                  Cancel
+               </Button>
+            </Box>
          </form>
       </Box>
    );
