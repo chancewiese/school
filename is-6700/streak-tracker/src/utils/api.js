@@ -1,24 +1,16 @@
 const LOCAL_STORAGE_KEY = "streak_tracker_data";
 
 const initialData = {
-   streakGroups: [
-      { id: "general", name: "General", description: "Default group" },
-   ],
+   streakGroups: [],
    streakItems: [],
+   users: [],
 };
 
 const loadData = () => {
    const data = localStorage.getItem(LOCAL_STORAGE_KEY);
    if (data) {
       const parsedData = JSON.parse(data);
-      if (!parsedData.streakGroups.some((group) => group.id === "general")) {
-         parsedData.streakGroups.unshift({
-            id: "general",
-            name: "General",
-            isDefault: true,
-         });
-      }
-      return parsedData;
+      return { ...initialData, ...parsedData, users: parsedData.users || [] };
    }
    return initialData;
 };
@@ -116,5 +108,38 @@ export const api = {
          saveData(data);
       }
       return Promise.resolve(data.streakItems[itemIndex]);
+   },
+
+   login: (email, password) => {
+      const data = loadData();
+      const user = data.users.find(
+         (u) => u.email === email && u.password === password
+      );
+      if (user) {
+         return Promise.resolve({ ...user, password: undefined });
+      } else {
+         return Promise.reject(new Error("Invalid email or password"));
+      }
+   },
+
+   register: (email, password, role = "user") => {
+      const data = loadData();
+      if (data.users.some((u) => u.email === email)) {
+         return Promise.reject(new Error("Email already exists"));
+      }
+      const newUser = { id: Date.now().toString(), email, password, role };
+      data.users.push(newUser);
+      saveData(data);
+      return Promise.resolve({ ...newUser, password: undefined });
+   },
+
+   getCurrentUser: () => {
+      // This is a mock implementation. In a real app, you'd use tokens or sessions.
+      const data = loadData();
+      const currentUser = data.users[0]; // Just for demonstration
+      if (currentUser) {
+         return Promise.resolve({ ...currentUser, password: undefined });
+      }
+      return Promise.reject(new Error("No user logged in"));
    },
 };
