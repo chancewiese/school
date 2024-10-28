@@ -1,0 +1,8 @@
+﻿rtid,typename,typedesc
+1,connectivity,"Issues related to cable, phone, and internet"
+2,doors,Issues related to the function of any door found within the unit
+3,electrical,"Electrical issues (lights, outlets, appliances)"
+5,hvac,"Issues related to heating, ventilation, and/or air conditioning"
+6,plumbing,Plumbing issues found within the unit
+8,windows,Issues related to any window within the unit
+9,other,Other issues not readily described by any of the above
