@@ -1,0 +1,22 @@
+﻿ProdID,CatID,SourceID,ProdName,MSRP,ProdDesc,LeadTime,QtyOH,ROLevel,StartDate,EndDate
+1,1,,Pup X,11500,The original mega 5x8 trailer!,,0,,1/1/19,1/1/21
+2,4,,Air Purity,49,Air purifier for HVAC system,,0,,1/1/19,9/15/21
+3,1,,Pup Z,14500,The original mega 6x10 trailer,,0,,4/15/19,9/30/21
+4,1,,Pup Z Offroad,15995,The off-road version of the Pup Z,,0,,8/1/19,12/31/20
+5,3,1,Radon System,895,Keep your PupTrail radon free,,0,,1/1/20,4/15/20
+6,3,2,Pup Incenser,49,Built-in incense burner,,0,,1/1/20,3/1/21
+7,4,2,Incense - Cedar,11.95,Cedar-scent incense pack for built-in burner,,0,,1/1/20,12/31/21
+8,4,2,Incense - Lavendar,11.95,Lavendar-scent incense pack for built-in burner,,0,,1/1/20,12/31/21
+9,4,2,Incense - Old Couch,11.95,Old couch-scented incense pack for burner,,0,,9/1/20,12/31/21
+10,3,,Ruggedizer,995,Give your pup trailer the offroad treatment,30,0,,9/1/20,
+11,1,,Lil Pup,17995,Our sweet little go-anywhere pup,120,0,,1/1/21,
+12,2,1,Pup Lift,699,The easy way to raise and lower your trailer,,46,10,1/1/21,
+13,4,5,Puptite,4.95,Easily replace broken or popped rivets,,829,300,1/1/21,
+14,2,3,Mattress Upgrade,449,"Upgrade your mattress to luxurious 7"" foam!",,144,50,1/1/21,
+15,3,1,Auto-Level,995,Electrical system for automatically leveling the trailer,,68,10,1/1/21,
+16,4,1,Air Filter,79,Keep your PupTrail air free and clear,,135,30,3/1/21,
+17,3,,Chrome,495,Chrome accents for your new PupTrail,,,,6/1/21,
+18,1,,Big Pup,24995,Roomy with a full back-lid kitchen. Fun for the whole couple.,180,0,,7/1/21,
+19,1,,Pup Star,27995,The Big Pup with room for two more,240,0,,11/1/21,
+20,2,4,Blanket,99,New PupTrail blanket system for keeping warm while in bed,,77,20,1/1/22,
+21,,,Discount,,Discount Applied,,,,1/1/22,
