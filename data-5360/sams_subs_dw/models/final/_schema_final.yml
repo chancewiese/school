@@ -1,0 +1,99 @@
+version: 2
+
+models:
+   - name: dim_customer
+     description: "Customer Dimension"
+     columns:
+        - name: customer_id
+          tests:
+             - unique
+             - not_null
+        - name: first_name
+        - name: last_name
+        - name: birthdate
+        - name: phone
+
+   - name: dim_employee
+     description: "Employee Dimension"
+     columns:
+        - name: employee_id
+          tests:
+             - unique
+             - not_null
+        - name: first_name
+        - name: last_name
+        - name: birthdate
+
+   - name: dim_product
+     description: "Product Dimension"
+     columns:
+        - name: product_id
+          tests:
+             - unique
+             - not_null
+        - name: type
+        - name: name
+        - name: cost
+        - name: calories
+        - name: sandwich_length
+        - name: bread_type
+
+   - name: dim_location
+     description: "Location Dimension"
+     columns:
+        - name: location_id
+          tests:
+             - unique
+             - not_null
+        - name: location_type
+        - name: address
+        - name: state
+        - name: zip
+
+   - name: dim_order
+     description: "Order Dimension"
+     columns:
+        - name: order_id
+          tests:
+             - unique
+             - not_null
+        - name: order_method
+
+   - name: dim_date
+     description: "Date Dimension"
+     columns:
+        - name: date_id
+          tests:
+             - unique
+             - not_null
+        - name: day
+        - name: month
+        - name: year
+        - name: quarter
+        - name: date
+
+   - name: fact_order_lines
+     description: "Order Line Fact"
+     columns:
+        - name: order_line_id
+          tests:
+             - unique
+             - not_null
+        - name: order_id
+        - name: customer_id
+        - name: employee_id
+        - name: location_id
+        - name: date_id
+        - name: product_id
+        - name: quantity
+        - name: total_price
+        - name: points_earned
+
+   - name: fact_inventory_transaction
+     description: "Inventory Transaction Fact"
+     columns:
+        - name: location_id
+        - name: product_id
+        - name: date_id
+        - name: transaction_type_id
+        - name: quantity

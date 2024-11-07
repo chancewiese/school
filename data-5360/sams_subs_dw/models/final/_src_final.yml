@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+   - name: raw_data
+     database: GROUP8PROJECT
+     schema: RAW_DATA
+     tables:
+        - name: "CUSTOMER"
+        - name: "EMPLOYEE"
+        - name: '"ORDER"'
+        - name: "ORDER_LINE"
+        - name: "PRODUCT"
+        - name: "SANDWICH"
+        - name: "STORE"
